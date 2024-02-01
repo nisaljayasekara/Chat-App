@@ -37,6 +37,6 @@
          </image>
       </ImageView>
       <Button fx:id="emojiButton" layoutX="12.0" layoutY="607.0" mnemonicParsing="false" onAction="#btnEmojiOnAction" prefHeight="26.0" prefWidth="49.0" styleClass="loginbtn" stylesheets="@../styl/style.css" text="Emoji" />
-      <Button layoutX="284.0" layoutY="608.0" mnemonicParsing="false" text="image" />
+      <Button layoutX="339.0" layoutY="35.0" mnemonicParsing="false" onAction="#imageOnAction" text="image" />
    </children>
 </AnchorPane>
