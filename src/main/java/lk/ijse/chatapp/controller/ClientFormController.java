@@ -102,19 +102,19 @@ public class ClientFormController {
 
 
     private void sendMsg(String msgToSend) {
+
         if (!msgToSend.isEmpty()){
-            if (!msgToSend.matches(".*\\.(png|jpe?g|gif)$")){
+            if(!msgToSend.matches(".*\\.(png|jpe?g|gif)$")){
 
                 HBox hBox = new HBox();
                 hBox.setAlignment(Pos.CENTER_RIGHT);
                 hBox.setPadding(new Insets(5, 5, 0, 10));
 
                 Text text = new Text(msgToSend);
-                text.setStyle("-fx-font-size: 13");
+                text.setStyle("-fx-font-size: 14");
                 TextFlow textFlow = new TextFlow(text);
 
-
-                textFlow.setStyle("-fx-background-color: #57e306; -fx-font-weight: bold; -fx-color: white; -fx-background-radius: 20px");
+                textFlow.setStyle("-fx-background-color: #05f215; -fx-font-weight: bold; -fx-color: white; -fx-background-radius: 20px");
                 textFlow.setPadding(new Insets(5, 10, 5, 10));
                 text.setFill(Color.color(1, 1, 1));
 
@@ -132,13 +132,13 @@ public class ClientFormController {
                 vBox.getChildren().add(hBox);
                 vBox.getChildren().add(hBoxTime);
 
-
                 try {
-                    dataOutputStream.writeUTF(clientName + "-" +msgToSend);
+                    dataOutputStream.writeUTF(clientName + ":" + msgToSend);
                     dataOutputStream.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
                 txtMsg.clear();
             }
         }
@@ -150,75 +150,66 @@ public class ClientFormController {
         ServerFormController.receiveMessage(clientName+" left.");//cleanup code
     }
    public static void receiveMessage (String msg, VBox vBox){
+
        if (msg.matches(".*\\.(png|jpe?g|gif)$")){
-            HBox hBoxName = new HBox();
-            hBoxName.setAlignment(Pos.CENTER_LEFT);
-            Text textName = new Text(msg.split("[-]")[0]);
-            TextFlow textFlowName = new TextFlow(textName);
-            hBoxName.getChildren().add(textFlowName);
 
-            Image image = new Image(msg.split("[-]")[1]);
-            ImageView imageView = new ImageView(image);
-            imageView.setFitHeight(200);
-            imageView.setFitWidth(200);
-            HBox hBox = new HBox();
-            hBox.setAlignment(Pos.CENTER_LEFT);
-            hBox.setPadding(new Insets(5,5,5,10));
-            hBox.getChildren().add(imageView);
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    vBox.getChildren().add(hBoxName);
-                    vBox.getChildren().add(hBox);
-                }
-            });
+           String [] msge = msg.split("#");
+           String name = msge[0];
+           String msgFromServer = msge[1];
 
-        }else {
-            String name = msg.split("-")[0];
-            String msgFromServer = msg.split("-")[1];
+           HBox hBoxName = new HBox();
+           hBoxName.setAlignment(Pos.CENTER_LEFT);
+           Text textName = new Text(name);
+           TextFlow textFlowName = new TextFlow(textName);
+           hBoxName.getChildren().add(textFlowName);
 
-            HBox hBox = new HBox();
-            hBox.setAlignment(Pos.CENTER_LEFT);
-            hBox.setPadding(new Insets(5,5,5,10));
+           Image image = new Image(msgFromServer);
+           ImageView imageView = new ImageView(image);
+           imageView.setFitHeight(200);
+           imageView.setFitWidth(200);
+           HBox hBox = new HBox();
+           hBox.setAlignment(Pos.CENTER_LEFT);
+           hBox.setPadding(new Insets(5,5,5,10));
+           hBox.getChildren().add(imageView);
 
-            HBox hBoxName = new HBox();
-            hBoxName.setAlignment(Pos.CENTER_LEFT);
-            Text textName = new Text(name);
-            TextFlow textFlowName = new TextFlow(textName);
-            hBoxName.getChildren().add(textFlowName);
+           Platform.runLater(new Runnable() {
+               @Override
+               public void run() {
+                   vBox.getChildren().add(hBoxName);
+                   vBox.getChildren().add(hBox);
+               }
+           });
 
-            Text text = new Text(msgFromServer);
-            TextFlow textFlow = new TextFlow(text);
-            textFlow.setStyle("-fx-background-color: #08d1a6; -fx-font-weight: bold; -fx-background-radius: 20px");
-            textFlow.setPadding(new Insets(5,10,5,10));
-            text.setFill(Color.color(0,0,0));
+       }else {
+           String name = msg.split(":")[0];
+           String msgFromServer = msg.split(":")[1];
 
-            hBox.getChildren().add(textFlow);
+           HBox hBox = new HBox();
+           hBox.setAlignment(Pos.CENTER_LEFT);
+           hBox.setPadding(new Insets(5,5,5,10));
 
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    vBox.getChildren().add(hBoxName);
-                    vBox.getChildren().add(hBox);
-                }
-            });
-        }
+           HBox hBoxName = new HBox();
+           hBoxName.setAlignment(Pos.CENTER_LEFT);
+           Text textName = new Text(name);
+           TextFlow textFlowName = new TextFlow(textName);
+           hBoxName.getChildren().add(textFlowName);
 
-    }
+           Text text = new Text(msgFromServer);
+           TextFlow textFlow = new TextFlow(text);
+           textFlow.setStyle("-fx-background-color: #9af5a0; -fx-font-weight: bold; -fx-background-radius: 20px");
+           textFlow.setPadding(new Insets(5,10,5,10));
+           text.setFill(Color.color(0,0,0));
 
-    @FXML
-    void btnimageOnAction(ActionEvent event) {
-      /*  System.out.println("nisal");
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Select File to Open");
-        int userSelection = fileChooser.showOpenDialog(null);
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            File fileToOpen = fileChooser.getSelectedFile();
+           hBox.getChildren().add(textFlow);
 
-            sendImage(fileToOpen.getPath());
-            //sendImage(file);
-            System.out.println(fileToOpen.getPath() + " chosen.");
-        }*/
+           Platform.runLater(new Runnable() {
+               @Override
+               public void run() {
+                   vBox.getChildren().add(hBoxName);
+                   vBox.getChildren().add(hBox);
+               }
+           });
+       }
     }
 
     @FXML
@@ -239,21 +230,21 @@ public class ClientFormController {
     private void sendImage(String file) {
 
 
-        File imageFile = new File(file);
-        Image image = new Image(imageFile.toURI().toString());
+        Image image = new Image(file);
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(200);
         imageView.setFitWidth(200);
 
         HBox hBox = new HBox();
-        hBox.setPadding(new Insets(5, 5, 5, 10));
+        hBox.setPadding(new Insets(5,5,5,10));
         hBox.getChildren().add(imageView);
         hBox.setAlignment(Pos.CENTER_RIGHT);
 
         vBox.getChildren().add(hBox);
 
         try {
-            dataOutputStream.writeUTF(file);
+            System.out.println(clientName + ":" + file);
+            dataOutputStream.writeUTF(clientName + "#" + file);
             dataOutputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();

@@ -11,17 +11,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="Pane" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #91FF76;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatapp.controller.ClientFormController">
+<AnchorPane fx:id="Pane" prefHeight="641.0" prefWidth="407.0" style="-fx-background-color: #91FF76;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatapp.controller.ClientFormController">
    <children>
-      <Label fx:id="txtName" layoutX="115.0" layoutY="18.0" prefHeight="30.0" prefWidth="179.0">
+      <Label fx:id="txtName" layoutX="100.0" layoutY="23.0" prefHeight="30.0" prefWidth="205.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
-      <TextField fx:id="txtMsg" layoutX="76.0" layoutY="608.0" onAction="#txtMessageOnAction" prefHeight="26.0" prefWidth="179.0">
+      <TextField fx:id="txtMsg" layoutX="88.0" layoutY="596.0" onAction="#txtMessageOnAction" prefHeight="38.0" prefWidth="258.0">
          <effect>
             <InnerShadow />
          </effect></TextField>
-      <Button layoutX="346.0" layoutY="607.0" mnemonicParsing="false" onAction="#btnSendOnAction" prefHeight="26.0" prefWidth="42.0" styleClass="loginbtn" stylesheets="@../styl/style.css" text="send" />
+      <ImageView fitHeight="61.0" fitWidth="62.0" layoutX="27.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/img_2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="26.0" layoutX="51.0" layoutY="606.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/img_4.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="38.0" fitWidth="50.0" layoutX="358.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/img.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="351.0" layoutY="596.0" mnemonicParsing="false" onAction="#btnSendOnAction" opacity="0.41" prefHeight="37.0" prefWidth="50.0" styleClass="loginbtn" stylesheets="@../styl/style.css" />
       <ScrollPane fx:id="ScrollPain" layoutX="-1.0" layoutY="66.0" prefHeight="526.0" prefWidth="408.0">
          <content>
             <VBox fx:id="vBox" prefHeight="530.0" prefWidth="398.0" style="-fx-background-color: #D6EAD1;">
@@ -31,12 +46,12 @@
             </VBox>
          </content>
       </ScrollPane>
-      <ImageView fitHeight="49.0" fitWidth="65.0" layoutX="29.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="11.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../icon/img_2.png" />
+            <Image url="@../icon/icons8-smile-50.png" />
          </image>
       </ImageView>
-      <Button fx:id="emojiButton" layoutX="12.0" layoutY="607.0" mnemonicParsing="false" onAction="#btnEmojiOnAction" prefHeight="26.0" prefWidth="49.0" styleClass="loginbtn" stylesheets="@../styl/style.css" text="Emoji" />
-      <Button layoutX="339.0" layoutY="35.0" mnemonicParsing="false" onAction="#imageOnAction" text="image" />
+      <Button fx:id="emojiButton" layoutX="7.0" layoutY="596.0" mnemonicParsing="false" onAction="#btnEmojiOnAction" opacity="0.41" prefHeight="38.0" prefWidth="38.0" stylesheets="@../styl/style.css" />
+      <Button layoutX="45.0" layoutY="596.0" mnemonicParsing="false" onAction="#imageOnAction" opacity="0.48" prefHeight="38.0" prefWidth="38.0" stylesheets="@../styl/style.css" />
    </children>
 </AnchorPane>

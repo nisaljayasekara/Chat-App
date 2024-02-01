@@ -35,8 +35,6 @@ public class EmojiPicker extends VBox {
         emojiListView = new ListView<>();
         emojiListView.setItems(FXCollections.observableArrayList(emojis));
 
-        // Customize the appearance of the list view
-//        emojiListView.setCellFactory(param -> new EmojiCell());
 
         // Create the emoji picker hBox
         HBox hBox = new HBox(emojiListView);
